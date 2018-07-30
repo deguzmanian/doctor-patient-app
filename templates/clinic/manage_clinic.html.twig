@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Doctors list{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Doctor Patient App</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{{ path('admin') }}">Home</a></li>
+            <li><a href="{{ path('user_info_index') }}">Manage Users</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Clinic <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ path('manage_clinic') }}">Clinic Setup</a></li>
+                <li><a href="{{ path('doctor_list') }}">Doctor List</a></li>
+                <li><a href="{{ path('patient_list') }}">Patient List</a></li>
+                <li><a href="#">Diagnosis List</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Manage Doctors/Patients/Diagnosis</li>
+                <li><a href="#">Add Doctor</a></li>
+                <li><a href="#">Add Patient</a></li>
+                <li><a href="#">Add Diagnosis Category</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+<div class="container">
+	<div class="table-responsive">
+		<h3>List of Clinic</h3>
+    <table class="table">
+    	<tr>
+    	<th>Clinic Name</th>
+    	<th>Clinic Email</th>
+    	<th>Clinic Schedule</th>
+    	<th>Actions</th>
+    	</tr>
+    	<tr>
+    		<td>clinic.name</td>
+    		<td>clinic.email</td>
+    		<td>clinic.schedule</td>
+    		<td><a href="#show_doctor_details" class="btn btn-info btn-sm">Update</a>
+    		<a href="#show_doctor_details" class="btn btn-danger btn-sm">Delete</a></td>
+    	</tr>
+    </table>
+</div>
+</div>
+{% endblock %}

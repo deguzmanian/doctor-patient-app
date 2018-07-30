@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserInfo{% endblock %}
+
+{% block body %}
+    <h1>UserInfo</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user_info.id }}</td>
+            </tr>
+            <tr>
+                <th>Fname</th>
+                <td>{{ user_info.fname }}</td>
+            </tr>
+            <tr>
+                <th>Mname</th>
+                <td>{{ user_info.mname }}</td>
+            </tr>
+            <tr>
+                <th>Lname</th>
+                <td>{{ user_info.lname }}</td>
+            </tr>
+            <tr>
+                <th>Suffix</th>
+                <td>{{ user_info.suffix }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ user_info.gender }}</td>
+            </tr>
+            <tr>
+                <th>Civil_status</th>
+                <td>{{ user_info.civilStatus }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ user_info.address }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{{ user_info.birthdate ? user_info.birthdate|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_info_index') }}">back to list</a>
+
+    <a href="{{ path('user_info_edit', {'id': user_info.id}) }}">edit</a>
+
+    {{ include('user_info/_delete_form.html.twig') }}
+{% endblock %}

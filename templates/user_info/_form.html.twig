@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+{{ form_start(form) }}
+<div class="container-fluid">
+<div class="form-group col-md-4">
+    {{ form_widget(form.fname) }}
+</div>
+<div class="form-group col-md-2">
+    {{ form_widget(form.mname) }}
+</div>
+<div class="form-group col-md-4">
+    {{ form_widget(form.lname) }}
+  </div>
+<div class="form-group col-md-2">
+    {{ form_widget(form.suffix) }}
+</div>
+<div class="form-group col-md-6">
+    {{ form_widget(form.gender) }}
+</div>
+<div class="form-group col-md-6">
+    {{ form_widget(form.civil_status) }}
+</div>
+<div class="form-group col-md-6">
+    {{ form_widget(form.address) }}
+</div>
+<div class="form-group col-md-4">
+    {{ form_widget(form.birthdate) }}
+</div>
+<div class="form-group col-md-2">
+	<input type="submit" value="CREATE" class="btn btn-success" />
+</div>
+{{ form_end(form) }}
+</div>
+
+{% endblock %}

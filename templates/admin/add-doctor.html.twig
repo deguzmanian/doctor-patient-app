@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Manage Doctor{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Doctor Patient App</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{{ path('admin') }}">Home</a></li>
+            <li><a href="{{ path('user_info_index') }}">Manage Users</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Clinic <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ path('add_clinic') }}">Clinic Setup</a></li>
+                <li><a href="{{ path('doctor_list') }}">Doctor List</a></li>
+                <li><a href="{{ path('patient_list') }}">Patient List</a></li>
+                <li><a href="{{ path('diagnosis_categories') }}">Diagnosis List</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Manage Doctors/Patients/Diagnosis</li>
+                <li><a href="{{ path('doctor') }}">Add Doctor</a></li>
+                <li><a href="{{ path('patient-add') }}">Add Patient</a></li>
+                <li><a href="{{ path('add_diagnosis_category') }}">Add Diagnosis Category</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+<div class="container">
+
+{{ form_start(form) }}
+<div class="panel panel-default">
+    <div class="panel-heading"><h3>Add Doctor <input type="submit" value="CREATE" class="btn btn-success pull-right"/> </h3></div>
+<div class="panel-body">
+<label>USER LOGIN DETAILS</label>
+<div class="form-group col-md-12">
+<label>Username:</label>
+{{ form_widget(form.username) }}
+</div>
+<div class="form-group col-md-12">
+{{ form_widget(form.plainPassword) }}
+</div>
+</div>
+
+
+<div class="panel-body">
+<label>USER INFORMATION</label>
+<div class="la lang">
+<div class="form-group col-md-4">
+	<label>First Name:</label>
+    {{ form_widget(form.userinfo.fname) }}
+</div>
+<div class="form-group col-md-2">
+	<label>Middle Name:</label>
+    {{ form_widget(form.userinfo.mname) }}
+</div>
+<div class="form-group col-md-4">
+	<label>Last Name:</label>
+    {{ form_widget(form.userinfo.lname) }}
+  </div>
+<div class="form-group col-md-2">
+	<label>Suffix:</label>
+    {{ form_widget(form.userinfo.suffix) }}
+</div>
+<div class="form-group col-md-6">
+	<label>Gender:</label>
+    {{ form_widget(form.userinfo.gender) }}
+</div>
+<div class="form-group col-md-6">
+	<label>Civil Status:</label>
+    {{ form_widget(form.userinfo.civil_status) }}
+</div>
+<div class="form-group col-md-6">
+	<label>Current Address:</label>
+    {{ form_widget(form.userinfo.address) }}
+</div>
+<div class="form-group col-md-6">
+	<label>Birthdate:</label>
+    {{ form_widget(form.userinfo.birthdate) }}
+		</div>
+	</div>
+</div>
+    <div class="panel-body">
+<label>ACCREDITATION INFORMATION <span style="color:red;">(*For Doctors only)</span></label>
+<div class="la lang">
+
+<div class="form-group col-md-4">
+<label>Code:</label>
+{{ form_widget(form.accreditationinfo.accreditationCode) }}
+</div>
+<div class="form-group col-md-4">
+	<label>Starting Date:</label>
+{{ form_widget(form.accreditationinfo.accreditationDate) }}
+</div>
+<div class="form-group col-md-4">
+	<label>Expiry Date:</label>
+{{ form_widget(form.accreditationinfo.accreditationExpDate) }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{ form_end(form) }}
+{% endblock %}
