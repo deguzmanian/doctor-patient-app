@@ -31,6 +31,7 @@ class Doctor extends User
     {
         $this->patientRecords = new ArrayCollection();
         $this->clinics = new ArrayCollection();
+        parent::setRoles(['ROLE_DOCTOR']);
     }
     public function getUserInfo(): ?UserInfo
     {

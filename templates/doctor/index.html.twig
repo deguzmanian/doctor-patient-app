@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Doctor Patient App</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{{ path('doctor-home') }}">Home</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h4>Patient List</h4></div>
+    <div class="panel-body">
+      <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for patient in patients %}
+        <tr>
+          <td>{{ patient.userInfo.lname }}, {{ patient.userInfo.fname }} {{ patient.userInfo.mname }}, {{ patient.userInfo.suffix }}</td>
+          <td><a href="{{ path('add_diagnosis', { 'id': patient.id }) }}" class="btn btn-primary btn-xs">Add Diagnosis</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+	</div>
+</div>
+</div>
+{% endblock %}

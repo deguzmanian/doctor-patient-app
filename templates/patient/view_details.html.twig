@@ -9,57 +9,41 @@
           <a class="navbar-brand" href="#">Doctor Patient App</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="{{ path('admin') }}">Home</a></li>
-            <li class="active"><a href="{{ path('patient') }}">Patients</a></li>
-            <li><a href="">Manage Users</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clinic <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Manage Clinic</a></li>
-                <li><a href="">Doctor List</a></li>
-                <li><a href="">Patient List</a></li>
-                <li><a href="#">Diagnosis List</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
+          
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+
 <div class="container">
+    <div class="panel panel-default">
+    <div class="panel-heading"><h3>Record Details<a href="{{ path('home') }}" class="btn btn-primary pull-right btn-sm">Home</a></h3></div>
+    <div class="panel-body">
 <div class="table-responsive">
-    <h2>Patient checkup details</h2>
-    <table class="table">
+    <table class="table table-bordered">
         <tbody>
             <tr>
-                <th>Date of Checkup: record.check_up </th>
-                <th>Doctor-in-Charge: record.doc_in_charge </th>
+                <th style="text-align:center;">Date of Checkup: record.check_up </th>
+                <th style="text-align:center;">Doctor-in-Charge: record.doc_in_charge </th>
             </tr>
             <tr>
-                <th>Check up reason:</th>
-                <td>record.reason</td>
+                <td style="text-align:center;" colspan="2">Check up reason: record.reason</td>
             </tr>
             <tr>
-                <th>Diagnosis Category:</th>
-                <td>record.category</td>
+                <td style="text-align:center;" colspan="2">Diagnosis Category: record.category</td>
             </tr>
             <tr>
-                <th>Diagnosis:</th>
-                <td>record.diagnosis</td>
+                <td style="text-align:center;" colspan="2">Diagnosis: record.diagnosis</td>
             </tr>
             <tr>
-                <th>Payment:</th>
-                <td>record.payment</td>
+                <td style="text-align:center;" colspan="2">Payment: record.payment</td>
             </tr>
         </tbody>
     </table>
     </div>
+</div>
+</div>
 </div>
 {% endblock %}

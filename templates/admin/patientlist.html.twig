@@ -49,8 +49,8 @@
         <tr>
           <td>{{ patient.userInfo.lname }}, {{ patient.userInfo.fname }} {{ patient.userInfo.mname }}, {{ patient.userInfo.suffix }}</td>
           <td>
-            <a href="#" class="btn btn-info">Edit</a>
-            <a href="#" class="btn btn-danger">Delete</a>
+            <a href="{{ path('patient_edit_profile', { 'id': patient.id }) }}" class="btn btn-info btn-xs">EDIT</a>
+            <a href="#" class="btn btn-danger btn-xs">DELETE</a>
           </td>
         </tr>
       {% endfor %}

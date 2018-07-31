@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Doctor Patient App</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3>Hospital Records</h3></div>
+    <div class="panel-body">
+      <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+      <th>Date of Checkup</th>
+      <th>Diagnosis Category</th>
+      <th>Diagnosis</th>
+      <th>Doctor-in-Charge</th>
+      <th>Action</th>
+      </tr>
+    </thead>
+      <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><a href="{{ path('view') }}">View</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+	</div>
+</div>
+</div>
+{% endblock %}

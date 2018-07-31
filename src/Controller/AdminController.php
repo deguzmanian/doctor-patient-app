@@ -35,7 +35,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin/homepage", name="admin")
+     * @Route("/admin", name="admin")
      */
     public function index()
     {
@@ -121,17 +121,18 @@ class AdminController extends Controller
     public function addClinic(Request $request)
     {
         $clinic = new Clinic();
-        $form = $this->createForm(
-            ClinicType::class,
-            $clinic
-        );
+        $form = $this->createForm(ClinicType::class, $clinic);
+        
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $clinic = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($clinic);
             $entityManager->flush();
-            return $this->redirectToRoute('clinic_list');
+
+            $this->addFlash('success', 'Clinic Added!');
+
+            return $this->redirectToRoute('add_clinic');
         }
         return $this->render('/admin/addClinic.html.twig', [
             'form' => $form->createView(),
@@ -152,6 +153,22 @@ class AdminController extends Controller
             'clinics' => $clinics
         ]);
     }
+
+    // delete_clinic
+    /**
+     * @Route("/{id}", name="clinic_delete", methods="DELETE")
+     */
+    public function delete(Request $request, Clinic $clinic): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$clinic->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($clinic);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('clinic_list');
+    }
+
     /**
      * @Route("/admin/patients-list", name="patient_list")
      */

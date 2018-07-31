@@ -11,7 +11,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="{{ path('admin') }}">Home</a></li>
-            <li class="active"><a href="{{ path('user_info_index') }}">Manage Users</a></li>
+            <li><a href="{{ path('user_info_index') }}">Manage Users</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Clinic <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -37,9 +37,44 @@
       <div class="panel panel-default">
     <div class="panel-heading"><h3>PROFILE</h3></div>
     <div class="panel-body">
+      <div class="table-responsive">
+      <table class="table">
+      {% for doctor in doctor %}
+          
+          <tr>
+          <th><h4>USER DETAILS</h4></th>
+          <th><h4>ACCREDITATION DETAILS</h4></th>
+          </tr>
 
-      SHOW DATA HERE
+          <tr>
+          <th>Name: {{doctor.userInfo.fname}} {{doctor.userInfo.mname}} {{doctor.userInfo.lname}}, {{doctor.userInfo.Suffix}} </th>
+            <th>Accrediatation Code: {{ doctor.accreditationinfo.accreditationCode }}</th>
+          </tr>
 
+          <tr>
+          <th>Birtdate: {{doctor.userInfo.birthdate| date('m-d-y') }} </th>
+            <th>Accrediatation Start Date: {{ doctor.accreditationinfo.accreditationDate| date() }}</th> 
+          </tr>
+          <th>Age: {{ date('now').diff((date(doctor.userInfo.birthdate))).format('%y years old') }} </th>
+            <th>Accrediatation Expiry Date: {{ doctor.accreditationinfo.accreditationExpdate| date() }}</th> 
+          </tr>
+          
+          <tr>
+            <th>Address: {{ doctor.userInfo.address }}</th>
+            <th></th>
+          </tr>
+
+          <tr>
+            <th>Civil Status: {{ doctor.userInfo.civilstatus }}</th>
+            <th></th>
+          </tr>
+
+          {% endfor %}
+    
+          </table>
+        </div>
     </div>
   </div>
 </div>
+
+{% endblock %}

@@ -21,19 +21,21 @@ class PatientRecordType extends AbstractType
     {
         $builder
             ->add('checkupDate', TextType::class, [
-                'label' => 'Checkup Date',
+                'label' => 'Checkup Date:',
                 'attr' => [
-                    'class' => 'datepicker'
+                    'class' => 'datepicker form-control'
                 ],
             ])
             ->add('checkupReason', TextareaType::class, [
                 'label' => 'Checkup Reason',
+                'attr' => ['class' => 'form-control']
             ])
             ->add('diagnosis', TextareaType::class, [
                 'label' => 'Diagnosis',
+                'attr' => ['class' => 'form-control']
             ])
             ->add('diagnosiscategory', EntityType::class, [
-                'label' => 'Diagnosis Category',
+                'label' => 'Diagnosis Category', 'attr' => ['class' => 'form-control'],
                 'class' => DiagnosisCategory::class,
                 'choice_label' => function ($diagnosiscategory) {
                     return $diagnosiscategory->getDiagnosisName();

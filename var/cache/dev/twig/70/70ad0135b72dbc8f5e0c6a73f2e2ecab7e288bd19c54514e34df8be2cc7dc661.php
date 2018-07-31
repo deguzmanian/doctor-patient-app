@@ -41,16 +41,16 @@ class __TwigTemplate_c56bfb5535de570b619612eafce0d994f7731339db6330a7225b93b3aed
         ";
         // line 6
         $this->displayBlock('stylesheets', $context, $blocks);
-        // line 16
+        // line 17
         echo "    </head>
     <body>
         ";
-        // line 18
-        $this->displayBlock('body', $context, $blocks);
         // line 19
+        $this->displayBlock('body', $context, $blocks);
+        // line 20
         echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 59
+        // line 77
         echo "    </body>
 </html>
 ";
@@ -103,6 +103,7 @@ class __TwigTemplate_c56bfb5535de570b619612eafce0d994f7731339db6330a7225b93b3aed
 <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
 <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
 <link rel=\"stylesheet\" href=\"//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css\">
+<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css\">
         ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -112,7 +113,7 @@ class __TwigTemplate_c56bfb5535de570b619612eafce0d994f7731339db6330a7225b93b3aed
 
     }
 
-    // line 18
+    // line 19
     public function block_body($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -129,7 +130,7 @@ class __TwigTemplate_c56bfb5535de570b619612eafce0d994f7731339db6330a7225b93b3aed
 
     }
 
-    // line 19
+    // line 20
     public function block_javascripts($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -138,14 +139,17 @@ class __TwigTemplate_c56bfb5535de570b619612eafce0d994f7731339db6330a7225b93b3aed
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 20
+        // line 21
         echo "<script src=\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js\"></script>
 <script src=\"//code.jquery.com/jquery-1.11.1.min.js\"></script>
 <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js\"></script>
 <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>
 <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>
 <script src=\"//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>
-              <script>
+<script src=\"//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js\"></script>
+              ";
+        // line 29
+        echo "              <script>
               \$( function() {
                 \$( \".datepicker\" ).datepicker();
               } );
@@ -155,7 +159,26 @@ class __TwigTemplate_c56bfb5535de570b619612eafce0d994f7731339db6330a7225b93b3aed
                 \$('.table').DataTable();
             } );
               </script>
-        \t<script>
+
+              ";
+        // line 41
+        echo "              <script>
+          \$('.timepicker').timepicker({
+          timeFormat: 'h:mm p',
+          interval: 60,
+          minTime: '10',
+          maxTime: '6:00pm',
+          defaultTime: '11',
+          startTime: '10:00',
+          dynamic: false,
+          dropdown: true,
+          scrollbar: true
+      });
+          </script>
+
+          ";
+        // line 56
+        echo "        \t<script>
         \t\t\$(function() {
 
 \t\t\t\t    \$('#login-form-link').click(function(e) {
@@ -174,9 +197,7 @@ class __TwigTemplate_c56bfb5535de570b619612eafce0d994f7731339db6330a7225b93b3aed
 \t\t\t\t\t});
 
 \t\t\t\t});
-
         \t</script>
-
         ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -193,7 +214,7 @@ class __TwigTemplate_c56bfb5535de570b619612eafce0d994f7731339db6330a7225b93b3aed
 
     public function getDebugInfo()
     {
-        return array (  142 => 20,  133 => 19,  116 => 18,  98 => 8,  93 => 7,  84 => 6,  66 => 5,  54 => 59,  51 => 19,  49 => 18,  45 => 16,  43 => 6,  39 => 5,  33 => 1,);
+        return array (  181 => 56,  165 => 41,  152 => 29,  143 => 21,  134 => 20,  117 => 19,  98 => 8,  93 => 7,  84 => 6,  66 => 5,  54 => 77,  51 => 20,  49 => 19,  45 => 17,  43 => 6,  39 => 5,  33 => 1,);
     }
 
     public function getSourceContext()
@@ -212,6 +233,7 @@ class __TwigTemplate_c56bfb5535de570b619612eafce0d994f7731339db6330a7225b93b3aed
 <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
 <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
 <link rel=\"stylesheet\" href=\"//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css\">
+<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css\">
         {% endblock %}
     </head>
     <body>
@@ -223,6 +245,8 @@ class __TwigTemplate_c56bfb5535de570b619612eafce0d994f7731339db6330a7225b93b3aed
 <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>
 <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>
 <script src=\"//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js\"></script>
+<script src=\"//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js\"></script>
+              {# Datepicker #}
               <script>
               \$( function() {
                 \$( \".datepicker\" ).datepicker();
@@ -233,6 +257,23 @@ class __TwigTemplate_c56bfb5535de570b619612eafce0d994f7731339db6330a7225b93b3aed
                 \$('.table').DataTable();
             } );
               </script>
+
+              {# Timepicker #}
+              <script>
+          \$('.timepicker').timepicker({
+          timeFormat: 'h:mm p',
+          interval: 60,
+          minTime: '10',
+          maxTime: '6:00pm',
+          defaultTime: '11',
+          startTime: '10:00',
+          dynamic: false,
+          dropdown: true,
+          scrollbar: true
+      });
+          </script>
+
+          {# Login #}
         \t<script>
         \t\t\$(function() {
 
@@ -252,9 +293,7 @@ class __TwigTemplate_c56bfb5535de570b619612eafce0d994f7731339db6330a7225b93b3aed
 \t\t\t\t\t});
 
 \t\t\t\t});
-
         \t</script>
-
         {% endblock %}
     </body>
 </html>

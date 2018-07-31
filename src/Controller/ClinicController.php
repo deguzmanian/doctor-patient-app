@@ -8,10 +8,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class ClinicController extends Controller
 {
     /**
-     * @Route("/admin/manage-clinic", name="")
+     * @Route("/admin/clinic/{clinicId}", name="view_clinic")
      */
-    public function index()
+    public function viewClinic($clinicId)
     {
-        return $this->render('clinic/manage_clinic.html.twig');
+        $clinic = $this->getDoctrine()
+            ->getRepository(Clinic::class)
+            ->find($clinicId);
+        $doctors = $clinic->getDoctors();
+        return $this->render('clinic/clinicinfo.html.twig', [
+            'clinic' => $clinic,
+            'doctors' => $doctors,
+        ]);
     }
 }
