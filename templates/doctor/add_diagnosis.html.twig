@@ -13,7 +13,7 @@
             <li><a href="{{ path('doctor-home') }}">Home</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Logout</a></li>
+            <li><a href="{{ path('logout') }}">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -23,8 +23,13 @@
   <div class="panel panel-default">
     <div class="panel-heading"><h4>Add Diagnosis
       
-      <p class="pull-right">Patient Name: {% for patient in patients %} {{ patient.userInfo.fname }} {{ patient.userInfo.mname }} {{ patient.userInfo.lname }}</p>
-{% endfor %} </h4></div>
+  <p class="pull-right">Patient Name: 
+
+    {% for patient in patients %}
+    {{ patient.userInfo.fname }} {{ patient.userInfo.mname }} {{ patient.userInfo.lname }}</p>
+      {% endfor %}
+
+    </h4></div>
 
 
     <div class="panel-body">

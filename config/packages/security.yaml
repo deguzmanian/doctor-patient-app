@@ -1,22 +1,34 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
         App\Entity\User:
             algorithm: bcrypt
-            cost: 12
+
     role_hierarchy:
         ROLE_ADMIN:     [ROLE_USER, ROLE_CLINIC_SETUP, ROLE_ACCOUNT_SETUP, ROLE_ENTITY_ADD]
         ROLE_DOCTOR:    [ROLE_USER, ROLE_RECORD_CREATE]
         ROLE_PATIENT:   [ROLE_USER, ROLE_RECORD_VIEW, ROLE_HISTORY_VIEW]
+    
     providers:
-        in_memory: { memory: ~ }
+        our_db_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+    
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
-
+            # pattern:    ^/
+            # http_basic: ~
+            provider: our_db_provider
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+            logout:
+                path:   logout
+                target: login
             # activate different ways to authenticate
 
             # http_basic: true
@@ -30,4 +42,8 @@ security:
     access_control:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/clinic, roles: ROLE_ADMIN }
+        # - { path: ^/user_info, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_ADMIN }
+        # - { path: ^/doctor, roles: ROLE_DOCTOR }
+        # - { path: ^/patient, roles: ROLE_PATIENT }

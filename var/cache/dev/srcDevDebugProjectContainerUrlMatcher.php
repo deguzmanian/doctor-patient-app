@@ -130,20 +130,23 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                             .'|(*:236)'
                         .')'
                     .')'
-                    .'|/login(*:252)'
+                    .'|/log(?'
+                        .'|in(*:255)'
+                        .'|out(*:266)'
+                    .')'
                     .'|/_(?'
-                        .'|error/(\\d+)(?:\\.([^/]++))?(*:291)'
-                        .'|wdt/([^/]++)(*:311)'
+                        .'|error/(\\d+)(?:\\.([^/]++))?(*:306)'
+                        .'|wdt/([^/]++)(*:326)'
                         .'|profiler/([^/]++)(?'
                             .'|/(?'
-                                .'|search/results(*:357)'
-                                .'|router(*:371)'
+                                .'|search/results(*:372)'
+                                .'|router(*:386)'
                                 .'|exception(?'
-                                    .'|(*:391)'
-                                    .'|\\.css(*:404)'
+                                    .'|(*:406)'
+                                    .'|\\.css(*:419)'
                                 .')'
                             .')'
-                            .'|(*:414)'
+                            .'|(*:429)'
                         .')'
                     .')'
                 .')$}sD',
@@ -174,14 +177,15 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                             215 => array(array('_route' => 'user_info_show', '_controller' => 'App\\Controller\\UserInfoController::show'), array('id'), array('GET' => 0), null),
                             228 => array(array('_route' => 'user_info_edit', '_controller' => 'App\\Controller\\UserInfoController::edit'), array('id'), array('GET' => 0, 'POST' => 1), null),
                             236 => array(array('_route' => 'user_info_delete', '_controller' => 'App\\Controller\\UserInfoController::delete'), array('id'), array('DELETE' => 0), null),
-                            252 => array(array('_route' => 'login', '_controller' => 'App\\Controller\\LoginController::login'), array(), null, null),
-                            291 => array(array('_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'), array('code', '_format'), null, null),
-                            311 => array(array('_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'), array('token'), null, null),
-                            357 => array(array('_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'), array('token'), null, null),
-                            371 => array(array('_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'), array('token'), null, null),
-                            391 => array(array('_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'), array('token'), null, null),
-                            404 => array(array('_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'), array('token'), null, null),
-                            414 => array(array('_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'), array('token'), null, null),
+                            255 => array(array('_route' => 'login', '_controller' => 'App\\Controller\\LoginController::login'), array(), null, null),
+                            266 => array(array('_route' => 'logout', '_controller' => 'App\\Controller\\LoginController::logoutAction'), array(), null, null),
+                            306 => array(array('_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'), array('code', '_format'), null, null),
+                            326 => array(array('_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'), array('token'), null, null),
+                            372 => array(array('_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'), array('token'), null, null),
+                            386 => array(array('_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'), array('token'), null, null),
+                            406 => array(array('_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'), array('token'), null, null),
+                            419 => array(array('_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'), array('token'), null, null),
+                            429 => array(array('_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'), array('token'), null, null),
                         );
 
                         list($ret, $vars, $requiredMethods, $requiredSchemes) = $routes[$m];
@@ -207,7 +211,7 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                         return $ret;
                 }
 
-                if (414 === $m) {
+                if (429 === $m) {
                     break;
                 }
                 $regex = substr_replace($regex, 'F', $m - $offset, 1 + strlen($m));

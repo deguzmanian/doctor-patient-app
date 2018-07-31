@@ -41,6 +41,7 @@ class srcDevDebugProjectContainerUrlGenerator extends Symfony\Component\Routing\
         'user_edit_profile' => array(array('id'), array('_controller' => 'App\\Controller\\EditProfileController::editAction'), array(), array(array('text', '/edit-profile'), array('variable', '/', '[^/]++', 'id'), array('text', '/admin')), array(), array()),
         'user_delete_profile' => array(array('id'), array('_controller' => 'App\\Controller\\EditProfileController::deleteAction'), array(), array(array('variable', '/', '[^/]++', 'id'), array('text', '/admin')), array(), array()),
         'login' => array(array(), array('_controller' => 'App\\Controller\\LoginController::login'), array(), array(array('text', '/login')), array(), array()),
+        'logout' => array(array(), array('_controller' => 'App\\Controller\\LoginController::logoutAction'), array(), array(array('text', '/logout')), array(), array()),
         'home' => array(array(), array('_controller' => 'App\\Controller\\PatientController::index'), array(), array(array('text', '/patient/homepage')), array(), array()),
         'view' => array(array(), array('_controller' => 'App\\Controller\\PatientController::detailsAction'), array(), array(array('text', '/patient/view')), array(), array()),
         'user_info_index' => array(array(), array('_controller' => 'App\\Controller\\UserInfoController::index'), array(), array(array('text', '/admin/user-management/')), array(), array()),
