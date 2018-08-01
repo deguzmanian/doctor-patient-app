@@ -433,6 +433,12 @@
     <service id="App\Form\DoctorType" class="App\Form\DoctorType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\EditDoctorType" class="App\Form\EditDoctorType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\EditPatientType" class="App\Form\EditPatientType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\PatientRecordType" class="App\Form\PatientRecordType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -715,6 +721,8 @@
         <argument>App\Form\ClinicType</argument>
         <argument>App\Form\DiagnosisCategoryType</argument>
         <argument>App\Form\DoctorType</argument>
+        <argument>App\Form\EditDoctorType</argument>
+        <argument>App\Form\EditPatientType</argument>
         <argument>App\Form\PatientRecordType</argument>
         <argument>App\Form\PatientType</argument>
         <argument>App\Form\UserInfoType</argument>
@@ -945,7 +953,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.Gi8D.Xn"/>
+      <argument type="service" id=".service_locator.FaebSry"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.http_foundation"/>
@@ -4349,6 +4357,10 @@
     <service id=".abstract.instanceof.App\Form\DiagnosisCategoryType" class="App\Form\DiagnosisCategoryType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\DoctorType" class="App\Form\DoctorType" public="false" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\DoctorType" class="App\Form\DoctorType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\EditDoctorType" class="App\Form\EditDoctorType" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\EditDoctorType" class="App\Form\EditDoctorType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\EditPatientType" class="App\Form\EditPatientType" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\EditPatientType" class="App\Form\EditPatientType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PatientRecordType" class="App\Form\PatientRecordType" public="false" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\PatientRecordType" class="App\Form\PatientRecordType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PatientType" class="App\Form\PatientType" public="false" autowire="true" abstract="true"/>
@@ -4510,40 +4522,16 @@
         <argument key="clinic" type="service" id=".errored..service_locator.9P7Umnu.App\Entity\Clinic"/>
       </argument>
     </service>
+    <service id=".service_locator.78bLBPi" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="diagnosis" type="service" id=".errored..service_locator.78bLBPi.App\Entity\DiagnosisCategory"/>
+      </argument>
+    </service>
     <service id=".service_locator.iuuVGtK" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="user" type="service" id=".errored..service_locator.iuuVGtK.App\Entity\User"/>
-      </argument>
-    </service>
-    <service id=".service_locator.xmdp16I" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="user" type="service" id=".errored..service_locator.xmdp16I.App\Entity\DiagnosisCategory"/>
-      </argument>
-    </service>
-    <service id=".service_locator.uZChl5U" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="patient" type="service" id=".errored..service_locator.uZChl5U.App\Entity\Patient"/>
-      </argument>
-    </service>
-    <service id=".service_locator.nVkkeil" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="user" type="service" id=".errored..service_locator.nVkkeil.App\Entity\Patient"/>
-      </argument>
-    </service>
-    <service id=".service_locator.UPVX8PL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="user" type="service" id=".errored..service_locator.UPVX8PL.App\Entity\Doctor"/>
-      </argument>
-    </service>
-    <service id=".service_locator.7yL4D6y" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="userInfoRepository" type="service" id="App\Repository\UserInfoRepository"/>
       </argument>
     </service>
     <service id=".service_locator.JbOCv0S" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4552,31 +4540,59 @@
         <argument key="userInfo" type="service" id=".errored..service_locator.JbOCv0S.App\Entity\UserInfo"/>
       </argument>
     </service>
-    <service id=".service_locator.GehxLRf" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.xmdp16I" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="user" type="service" id=".errored..service_locator.xmdp16I.App\Entity\DiagnosisCategory"/>
+      </argument>
+    </service>
+    <service id=".service_locator.yyCAEO_" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="patient" type="service" id=".errored..service_locator.yyCAEO_.App\Entity\UserInfo"/>
+      </argument>
+    </service>
+    <service id=".service_locator.7nv3Jvp" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="user" type="service" id=".errored..service_locator.7nv3Jvp.App\Entity\UserInfo"/>
+      </argument>
+    </service>
+    <service id=".service_locator.7yL4D6y" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userInfoRepository" type="service" id="App\Repository\UserInfoRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.GAjVKD9" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AdminController::delete" type="service" id=".service_locator.9P7Umnu"/>
+        <argument key="App\Controller\AdminController::deleteCategory" type="service" id=".service_locator.78bLBPi"/>
         <argument key="App\Controller\AdminController::editAction" type="service" id=".service_locator.iuuVGtK"/>
+        <argument key="App\Controller\AdminController::show" type="service" id=".service_locator.JbOCv0S"/>
+        <argument key="App\Controller\ClinicController::show" type="service" id=".service_locator.9P7Umnu"/>
         <argument key="App\Controller\EditController::deleteAction" type="service" id=".service_locator.xmdp16I"/>
         <argument key="App\Controller\EditController::editAction" type="service" id=".service_locator.xmdp16I"/>
-        <argument key="App\Controller\EditPatientController::deleteAction" type="service" id=".service_locator.nVkkeil"/>
-        <argument key="App\Controller\EditPatientController::editpatientAction" type="service" id=".service_locator.uZChl5U"/>
-        <argument key="App\Controller\EditProfileController::deleteAction" type="service" id=".service_locator.UPVX8PL"/>
-        <argument key="App\Controller\EditProfileController::editAction" type="service" id=".service_locator.UPVX8PL"/>
-        <argument key="App\Controller\EditProfileController::showAction" type="service" id=".service_locator.UPVX8PL"/>
+        <argument key="App\Controller\EditPatientController::deleteAction" type="service" id=".service_locator.7nv3Jvp"/>
+        <argument key="App\Controller\EditPatientController::editpatientAction" type="service" id=".service_locator.yyCAEO_"/>
+        <argument key="App\Controller\EditProfileController::deleteAction" type="service" id=".service_locator.7nv3Jvp"/>
+        <argument key="App\Controller\EditProfileController::editAction" type="service" id=".service_locator.7nv3Jvp"/>
         <argument key="App\Controller\UserInfoController::delete" type="service" id=".service_locator.JbOCv0S"/>
         <argument key="App\Controller\UserInfoController::edit" type="service" id=".service_locator.JbOCv0S"/>
         <argument key="App\Controller\UserInfoController::index" type="service" id=".service_locator.7yL4D6y"/>
         <argument key="App\Controller\UserInfoController::show" type="service" id=".service_locator.JbOCv0S"/>
         <argument key="App\Controller\AdminController:delete" type="service" id=".service_locator.9P7Umnu"/>
+        <argument key="App\Controller\AdminController:deleteCategory" type="service" id=".service_locator.78bLBPi"/>
         <argument key="App\Controller\AdminController:editAction" type="service" id=".service_locator.iuuVGtK"/>
+        <argument key="App\Controller\AdminController:show" type="service" id=".service_locator.JbOCv0S"/>
+        <argument key="App\Controller\ClinicController:show" type="service" id=".service_locator.9P7Umnu"/>
         <argument key="App\Controller\EditController:deleteAction" type="service" id=".service_locator.xmdp16I"/>
         <argument key="App\Controller\EditController:editAction" type="service" id=".service_locator.xmdp16I"/>
-        <argument key="App\Controller\EditPatientController:deleteAction" type="service" id=".service_locator.nVkkeil"/>
-        <argument key="App\Controller\EditPatientController:editpatientAction" type="service" id=".service_locator.uZChl5U"/>
-        <argument key="App\Controller\EditProfileController:deleteAction" type="service" id=".service_locator.UPVX8PL"/>
-        <argument key="App\Controller\EditProfileController:editAction" type="service" id=".service_locator.UPVX8PL"/>
-        <argument key="App\Controller\EditProfileController:showAction" type="service" id=".service_locator.UPVX8PL"/>
+        <argument key="App\Controller\EditPatientController:deleteAction" type="service" id=".service_locator.7nv3Jvp"/>
+        <argument key="App\Controller\EditPatientController:editpatientAction" type="service" id=".service_locator.yyCAEO_"/>
+        <argument key="App\Controller\EditProfileController:deleteAction" type="service" id=".service_locator.7nv3Jvp"/>
+        <argument key="App\Controller\EditProfileController:editAction" type="service" id=".service_locator.7nv3Jvp"/>
         <argument key="App\Controller\UserInfoController:delete" type="service" id=".service_locator.JbOCv0S"/>
         <argument key="App\Controller\UserInfoController:edit" type="service" id=".service_locator.JbOCv0S"/>
         <argument key="App\Controller\UserInfoController:index" type="service" id=".service_locator.7yL4D6y"/>
@@ -4640,13 +4656,15 @@
       <argument type="service" id="debug.argument_resolver.variadic.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.Gi8D.Xn" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.FaebSry" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\AccreditationInfoType" type="service" id="App\Form\AccreditationInfoType"/>
         <argument key="App\Form\ClinicType" type="service" id="App\Form\ClinicType"/>
         <argument key="App\Form\DiagnosisCategoryType" type="service" id="App\Form\DiagnosisCategoryType"/>
         <argument key="App\Form\DoctorType" type="service" id="App\Form\DoctorType"/>
+        <argument key="App\Form\EditDoctorType" type="service" id="App\Form\EditDoctorType"/>
+        <argument key="App\Form\EditPatientType" type="service" id="App\Form\EditPatientType"/>
         <argument key="App\Form\PatientRecordType" type="service" id="App\Form\PatientRecordType"/>
         <argument key="App\Form\PatientType" type="service" id="App\Form\PatientType"/>
         <argument key="App\Form\UserInfoType" type="service" id="App\Form\UserInfoType"/>
@@ -4832,7 +4850,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.GehxLRf"/>
+      <argument type="service" id=".service_locator.GAjVKD9"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -4886,12 +4904,12 @@
       <factory service=".service_locator.UEpceA5" method="withContext"/>
     </service>
     <service id=".errored..service_locator.9P7Umnu.App\Entity\Clinic" class="App\Entity\Clinic"/>
+    <service id=".errored..service_locator.78bLBPi.App\Entity\DiagnosisCategory" class="App\Entity\DiagnosisCategory"/>
     <service id=".errored..service_locator.iuuVGtK.App\Entity\User" class="App\Entity\User"/>
-    <service id=".errored..service_locator.xmdp16I.App\Entity\DiagnosisCategory" class="App\Entity\DiagnosisCategory"/>
-    <service id=".errored..service_locator.uZChl5U.App\Entity\Patient" class="App\Entity\Patient"/>
-    <service id=".errored..service_locator.nVkkeil.App\Entity\Patient" class="App\Entity\Patient"/>
-    <service id=".errored..service_locator.UPVX8PL.App\Entity\Doctor" class="App\Entity\Doctor"/>
     <service id=".errored..service_locator.JbOCv0S.App\Entity\UserInfo" class="App\Entity\UserInfo"/>
+    <service id=".errored..service_locator.xmdp16I.App\Entity\DiagnosisCategory" class="App\Entity\DiagnosisCategory"/>
+    <service id=".errored..service_locator.yyCAEO_.App\Entity\UserInfo" class="App\Entity\UserInfo"/>
+    <service id=".errored..service_locator.7nv3Jvp.App\Entity\UserInfo" class="App\Entity\UserInfo"/>
     <service id=".service_locator.HKoUR8q" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5213,7 +5231,7 @@
     <service id="Twig\Environment" alias="twig" public="false"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.GehxLRf"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.GAjVKD9"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".service_locator.AoifO_3" alias=".2_ServiceLocator~YNvhjFH" public="false"/>

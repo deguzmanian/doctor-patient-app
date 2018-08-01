@@ -155,6 +155,7 @@ class AdminController extends Controller
     }
 
     // delete_clinic
+
     /**
      * @Route("/{id}", name="clinic_delete", methods="DELETE")
      */
@@ -167,6 +168,22 @@ class AdminController extends Controller
         }
 
         return $this->redirectToRoute('clinic_list');
+    }
+
+    // category_delete
+
+    /**
+     * @Route("/delete/{id}", name="category_delete", methods="DELETE")
+     */
+    public function deleteCategory(Request $request, DiagnosisCategory $diagnosis): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$diagnosis->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($diagnosis);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('diagnosis_categories');
     }
 
     /**
@@ -231,5 +248,15 @@ class AdminController extends Controller
             'delete_form' => $deleteForm->createView(),
             'data_class' => DiagnosisCategoryType::class,
         ));
+    }
+
+    // SHOW PATIENT
+
+    /**
+     * @Route("/{id}", name="profile_show", methods="GET")
+     */
+    public function show(UserInfo $userInfo): Response
+    {   $accreInfo = new AccreditationInfo; 
+        return $this->render('admin/show_patient.html.twig', ['user_info' => $userInfo]);
     }
 }

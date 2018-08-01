@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Patient;
+use App\Entity\PatientRecord;
 
 use App\Form\PatientType;
+use App\Form\PatientRecordType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,15 +20,19 @@ class PatientController extends Controller
      */
     public function index()
     {
+        $records = $this->getDoctrine()
+            ->getRepository(PatientRecord::class)
+            ->findAll();
+
         return $this->render('patient/index.html.twig', [
-            'controller_name' => 'PatientController',
+            'records' => $records,
         ]);
     }
     /**
      * @Route("/patient/view", name="view")
      */
     public function detailsAction()
-    {
+    {   
         return $this->render('patient/view_details.html.twig');
     }
 }

@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Doctor Patient App</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{{ path('admin') }}">Home</a></li>
+            <li><a href="{{ path('user_info_index') }}">Users</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Clinic <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ path('add_clinic') }}">Clinic Setup</a></li>
+                <li><a href="{{ path('doctor_list') }}">Doctor List</a></li>
+                <li><a href="{{ path('patient_list') }}">Patient List</a></li>
+                <li><a href="{{ path('diagnosis_categories') }}">Diagnosis List</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Manage Doctors/Patients/Diagnosis</li>
+                <li><a href="{{ path('doctor') }}">Add Doctor</a></li>
+                <li><a href="{{ path('patient-add') }}">Add Patient</a></li>
+                <li><a href="{{ path('add_diagnosis_category') }}">Add Diagnosis Category</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ path('logout') }}">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+<div class="container">
+      <div class="panel panel-default">
+    <div class="panel-heading"><h3>{{ user_info.fname }}'s PROFILE <a href="{{ path('patient_edit_profile', { 'id': user_info.id }) }}" class="btn btn-primary btn-sm pull-right">UPDATE PROFILE</a></h3></div>
+    <div class="panel-body">
+      <div class="table-responsive">
+      <table class="table">
+          
+          <tr>
+          <th colspan="2" style="text-align:center;"><h4>USER DETAILS</h4></th>
+          </tr>
+
+          <tr>
+          <td style="text-align:center;">Name: {{ user_info.fname }} {{ user_info.mname }} {{ user_info.lname }}, {{ user_info.suffix }} </td>
+          <td style="text-align:center;">Birtdate: {{ user_info.birthdate| date('M d, Y') }}</td>
+          </tr>
+
+          <tr>
+          <td style="text-align:center;">Age: {{ date('now').diff((date( user_info.birthdate))).format('%y years old') }} </td>
+            <td style="text-align:center;">Address: {{  user_info.address }}</td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td colspan="2" style="text-align:center;">Civil Status: {{  user_info.civilstatus }}</td>
+            
+          </tr>
+
+    
+          </table>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

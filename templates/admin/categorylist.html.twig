@@ -9,7 +9,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="{{ path('admin') }}">Home</a></li>
-            <li><a href="{{ path('user_info_index') }}">Manage Users</a></li>
+            <li><a href="{{ path('user_info_index') }}">Users</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Clinic <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -46,10 +46,15 @@
       </thead>
       <tbody>
         <tr>
-          {% for category in diagnosiscategories %}
-            <td>{{ category.diagnosisName }}</td>
-            <td><a href="{{ path('user_edit', { 'id': category.id }) }}" class="btn btn-primary btn-xs">EDIT</a>
-            <a href="{{ path('user_delete', { 'id': category.id }) }}" class="btn btn-danger btn-xs">DELETE</a></td>
+{% for category in diagnosiscategories %}
+          <td>{{ category.diagnosisName }}</td>
+          <td>
+            <form method="post" action="{{ path('category_delete', { 'id': category.id }) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+            <a href="{{ path('user_edit', { 'id': category.id }) }}" class="btn btn-primary btn-sm">EDIT</a>
+            <button class="btn btn-danger btn-sm">DELETE</button>
+          </form>
         </tr>
       {% endfor %}
       </tbody>

@@ -110,43 +110,45 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         $regexList = array(
             0 => '{^(?'
                     .'|/([^/]++)(*:16)'
+                    .'|/delete/([^/]++)(*:39)'
+                    .'|/([^/]++)(*:55)'
                     .'|/admin/(?'
-                        .'|clinic/([^/]++)(*:48)'
+                        .'|clinic/([^/]++)(*:87)'
                         .'|([^/]++)(?'
                             .'|/edit(?'
-                                .'|(*:74)'
-                                .'|\\-patient\\-profile(*:99)'
+                                .'|(*:113)'
+                                .'|\\-p(?'
+                                    .'|atient\\-profile(*:142)'
+                                    .'|rofile(*:156)'
+                                .')'
                             .')'
-                            .'|(*:107)'
+                            .'|(*:166)'
                         .')'
-                        .'|user_profile/([^/]++)(*:137)'
-                        .'|([^/]++)(?'
-                            .'|/edit\\-profile(*:170)'
-                            .'|(*:178)'
-                        .')'
-                        .'|user\\-management/([^/]++)(?'
-                            .'|(*:215)'
-                            .'|/edit(*:228)'
-                            .'|(*:236)'
+                        .'|user\\-management/(?'
+                            .'|admin/user\\-profile/([^/]++)(*:223)'
+                            .'|([^/]++)(?'
+                                .'|/edit(*:247)'
+                                .'|(*:255)'
+                            .')'
                         .')'
                     .')'
                     .'|/log(?'
-                        .'|in(*:255)'
-                        .'|out(*:266)'
+                        .'|in(*:275)'
+                        .'|out(*:286)'
                     .')'
                     .'|/_(?'
-                        .'|error/(\\d+)(?:\\.([^/]++))?(*:306)'
-                        .'|wdt/([^/]++)(*:326)'
+                        .'|error/(\\d+)(?:\\.([^/]++))?(*:326)'
+                        .'|wdt/([^/]++)(*:346)'
                         .'|profiler/([^/]++)(?'
                             .'|/(?'
-                                .'|search/results(*:372)'
-                                .'|router(*:386)'
+                                .'|search/results(*:392)'
+                                .'|router(*:406)'
                                 .'|exception(?'
-                                    .'|(*:406)'
-                                    .'|\\.css(*:419)'
+                                    .'|(*:426)'
+                                    .'|\\.css(*:439)'
                                 .')'
                             .')'
-                            .'|(*:429)'
+                            .'|(*:449)'
                         .')'
                     .')'
                 .')$}sD',
@@ -155,7 +157,7 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         foreach ($regexList as $offset => $regex) {
             while (preg_match($regex, $matchedPathinfo, $matches)) {
                 switch ($m = (int) $matches['MARK']) {
-                    case 107:
+                    case 166:
                         $matches = array('id' => $matches[1] ?? null);
 
                         // user_delete
@@ -164,28 +166,31 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                         // user_delete_patient
                         return $this->mergeDefaults(array('_route' => 'user_delete_patient') + $matches, array('_controller' => 'App\\Controller\\EditPatientController::deleteAction'));
 
+                        // user_delete_profile
+                        return $this->mergeDefaults(array('_route' => 'user_delete_profile') + $matches, array('_controller' => 'App\\Controller\\EditProfileController::deleteAction'));
+
                         break;
                     default:
                         $routes = array(
                             16 => array(array('_route' => 'clinic_delete', '_controller' => 'App\\Controller\\AdminController::delete'), array('id'), array('DELETE' => 0), null),
-                            48 => array(array('_route' => 'view_clinic', '_controller' => 'App\\Controller\\ClinicController::viewClinic'), array('clinicId'), null, null),
-                            74 => array(array('_route' => 'user_edit', '_controller' => 'App\\Controller\\EditController::editAction'), array('id'), null, null),
-                            99 => array(array('_route' => 'patient_edit_profile', '_controller' => 'App\\Controller\\EditPatientController::editpatientAction'), array('id'), null, null),
-                            137 => array(array('_route' => 'user_profile_show', '_controller' => 'App\\Controller\\EditProfileController::showAction'), array('id'), null, null),
-                            170 => array(array('_route' => 'user_edit_profile', '_controller' => 'App\\Controller\\EditProfileController::editAction'), array('id'), null, null),
-                            178 => array(array('_route' => 'user_delete_profile', '_controller' => 'App\\Controller\\EditProfileController::deleteAction'), array('id'), null, null),
-                            215 => array(array('_route' => 'user_info_show', '_controller' => 'App\\Controller\\UserInfoController::show'), array('id'), array('GET' => 0), null),
-                            228 => array(array('_route' => 'user_info_edit', '_controller' => 'App\\Controller\\UserInfoController::edit'), array('id'), array('GET' => 0, 'POST' => 1), null),
-                            236 => array(array('_route' => 'user_info_delete', '_controller' => 'App\\Controller\\UserInfoController::delete'), array('id'), array('DELETE' => 0), null),
-                            255 => array(array('_route' => 'login', '_controller' => 'App\\Controller\\LoginController::login'), array(), null, null),
-                            266 => array(array('_route' => 'logout', '_controller' => 'App\\Controller\\LoginController::logoutAction'), array(), null, null),
-                            306 => array(array('_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'), array('code', '_format'), null, null),
-                            326 => array(array('_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'), array('token'), null, null),
-                            372 => array(array('_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'), array('token'), null, null),
-                            386 => array(array('_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'), array('token'), null, null),
-                            406 => array(array('_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'), array('token'), null, null),
-                            419 => array(array('_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'), array('token'), null, null),
-                            429 => array(array('_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'), array('token'), null, null),
+                            39 => array(array('_route' => 'category_delete', '_controller' => 'App\\Controller\\AdminController::deleteCategory'), array('id'), array('DELETE' => 0), null),
+                            55 => array(array('_route' => 'profile_show', '_controller' => 'App\\Controller\\AdminController::show'), array('id'), array('GET' => 0), null),
+                            87 => array(array('_route' => 'clinic_info_show', '_controller' => 'App\\Controller\\ClinicController::show'), array('id'), array('GET' => 0), null),
+                            113 => array(array('_route' => 'user_edit', '_controller' => 'App\\Controller\\EditController::editAction'), array('id'), null, null),
+                            142 => array(array('_route' => 'patient_edit_profile', '_controller' => 'App\\Controller\\EditPatientController::editpatientAction'), array('id'), null, null),
+                            156 => array(array('_route' => 'user_edit_profile', '_controller' => 'App\\Controller\\EditProfileController::editAction'), array('id'), null, null),
+                            223 => array(array('_route' => 'user_info_show', '_controller' => 'App\\Controller\\UserInfoController::show'), array('id'), array('GET' => 0), null),
+                            247 => array(array('_route' => 'user_info_edit', '_controller' => 'App\\Controller\\UserInfoController::edit'), array('id'), array('GET' => 0, 'POST' => 1), null),
+                            255 => array(array('_route' => 'user_info_delete', '_controller' => 'App\\Controller\\UserInfoController::delete'), array('id'), array('DELETE' => 0), null),
+                            275 => array(array('_route' => 'login', '_controller' => 'App\\Controller\\LoginController::login'), array(), null, null),
+                            286 => array(array('_route' => 'logout', '_controller' => 'App\\Controller\\LoginController::logoutAction'), array(), null, null),
+                            326 => array(array('_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'), array('code', '_format'), null, null),
+                            346 => array(array('_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'), array('token'), null, null),
+                            392 => array(array('_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'), array('token'), null, null),
+                            406 => array(array('_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'), array('token'), null, null),
+                            426 => array(array('_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'), array('token'), null, null),
+                            439 => array(array('_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'), array('token'), null, null),
+                            449 => array(array('_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'), array('token'), null, null),
                         );
 
                         list($ret, $vars, $requiredMethods, $requiredSchemes) = $routes[$m];
@@ -211,7 +216,7 @@ class srcDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                         return $ret;
                 }
 
-                if (429 === $m) {
+                if (449 === $m) {
                     break;
                 }
                 $regex = substr_replace($regex, 'F', $m - $offset, 1 + strlen($m));

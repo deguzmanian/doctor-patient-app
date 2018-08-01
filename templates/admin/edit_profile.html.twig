@@ -10,7 +10,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="{{ path('admin') }}">Home</a></li>
-            <li><a href="{{ path('user_info_index') }}">Manage Users</a></li>
+            <li><a href="{{ path('user_info_index') }}">Users</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Clinic <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -37,9 +37,9 @@
 
 {{ form_start(edit_profile_form) }}
 <div class="panel panel-default">
-    <div class="panel-heading"><h3>Add Doctor <input type="submit" value="UPDATE" class="btn btn-primary pull-right"/> </h3></div>
+    <div class="panel-heading"><h3>Edit Profile <input type="submit" value="SAVE CHANGES" class="btn btn-success pull-right"/> </h3></div>
 
-<div class="panel-body">
+{# <div class="panel-body">
 <label>USER LOGIN DETAILS</label>
 <div class="form-group col-md-12">
 <label>Username:</label>
@@ -48,7 +48,7 @@
 <div class="form-group col-md-12">
 {{ form_widget(edit_profile_form.plainPassword) }}
 </div>
-</div>
+</div> #}
 
 
 <div class="panel-body">
@@ -56,40 +56,42 @@
 <div class="la lang">
 <div class="form-group col-md-4">
   <label>First Name:</label>
-    {{ form_widget(edit_profile_form.userinfo.fname) }}
+    {{ form_widget(edit_profile_form.fname) }}
 </div>
 <div class="form-group col-md-2">
   <label>Middle Name:</label>
-    {{ form_widget(edit_profile_form.userinfo.mname) }}
+    {{ form_widget(edit_profile_form.mname) }}
 </div>
 <div class="form-group col-md-4">
   <label>Last Name:</label>
-    {{ form_widget(edit_profile_form.userinfo.lname) }}
+    {{ form_widget(edit_profile_form.lname) }}
   </div>
 <div class="form-group col-md-2">
   <label>Suffix:</label>
-    {{ form_widget(edit_profile_form.userinfo.suffix) }}
+    {{ form_widget(edit_profile_form.suffix) }}
 </div>
 <div class="form-group col-md-6">
   <label>Gender:</label>
-    {{ form_widget(edit_profile_form.userinfo.gender) }}
+    {{ form_widget(edit_profile_form.gender) }}
 </div>
 <div class="form-group col-md-6">
   <label>Civil Status:</label>
-    {{ form_widget(edit_profile_form.userinfo.civil_status) }}
+    {{ form_widget(edit_profile_form.civil_status) }}
 </div>
 <div class="form-group col-md-6">
   <label>Current Address:</label>
-    {{ form_widget(edit_profile_form.userinfo.address) }}
+    {{ form_widget(edit_profile_form.address) }}
 </div>
 <div class="form-group col-md-6">
   <label>Birthdate:</label>
-    {{ form_widget(edit_profile_form.userinfo.birthdate) }}
+    {{ form_widget(edit_profile_form.birthdate) }}
     </div>
   </div>
 </div>
-    <div class="panel-body">
-<label>ACCREDITATION INFORMATION <span style="color:red;">(*For Doctors only)</span></label>
+{# 
+
+<div class="panel-body">
+<label>ACCREDITATION INFORMATION</label>
 <div class="la lang">
 
 <div class="form-group col-md-4">
@@ -104,7 +106,7 @@
   <label>Expiry Date:</label>
 {{ form_widget(edit_profile_form.accreditationinfo.accreditationExpDate) }}
         </div>
-      </div>
+      </div> #}
     </div>
   </div>
 </div>

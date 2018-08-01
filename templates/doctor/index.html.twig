@@ -10,10 +10,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="{{ path('doctor-home') }}">Home</a></li>
+            <li class="active"><a href="{{ path('doctor-home') }}">Home</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{ path('logout') }}">Logout</a></li>
+            <li><a href="#">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -35,7 +35,7 @@
       {% for patient in patients %}
         <tr>
           <td>{{ patient.userInfo.lname }}, {{ patient.userInfo.fname }} {{ patient.userInfo.mname }}, {{ patient.userInfo.suffix }}</td>
-          <td><a href="{{ path('add_diagnosis', { 'id': patient.id }) }}" class="btn btn-primary btn-xs">Add Diagnosis</a></td>
+          <td><a href="{{ path('add_diagnosis', { 'id': patient.id }) }}" class="btn btn-primary btn-sm">Add Diagnosis</a></td>
         </tr>
       {% endfor %}
       </tbody>

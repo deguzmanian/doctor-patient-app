@@ -1,10 +1,11 @@
 <?php
 namespace App\Form;
+
 use App\Entity\DiagnosisCategory;
 use App\Entity\Doctor;
 use App\Entity\Patient;
 use App\Entity\PatientRecord;
-use App\Entity\Form\DataTransformer\DateToStringTransformer;
+use App\Form\DataTransformer\DateToStringTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 class PatientRecordType extends AbstractType
 {
     /**
@@ -43,7 +45,16 @@ class PatientRecordType extends AbstractType
                 'choice_value' => function (DiagnosisCategory $diagnosiscategory = null) {
                     return $diagnosiscategory ? $diagnosiscategory->getId() : '';
                 }
+            ])
+            ->add('payment', MoneyType::class, [
+                'label' => 'Payment',
+                'attr' => ['class' => 'form-control']
             ]);
+
+        $builder
+            ->get('checkupDate')
+            ->addModelTransformer(new DateToStringTransformer($builder->get('checkupDate')));
+        
     }
     /**
      * {@inheritdoc}

@@ -8,7 +8,7 @@ use App\Entity\Patient;
 use App\Entity\UserInfo;
 
 use App\Form\DoctorType;
-use App\Form\PatientType;
+use App\Form\EditPatientType;
 use App\Form\UserInfoType;
 
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,16 +24,16 @@ class EditPatientController extends Controller
      * @Route("/admin/{id}/edit-patient-profile", name="patient_edit_profile")
      * @Method({"GET", "POST"})
      */
-    public function editpatientAction(Request $request2, Patient $patient)
+    public function editpatientAction(Request $request, UserInfo $patient)
     {
         $deleteForm = $this->createDeleteForm($patient);
-        $editForm = $this->createForm('App\Form\PatientType', $patient);
-        $editForm->handleRequest($request2);
+        $editForm = $this->createForm('App\Form\EditPatientType', $patient);
+        $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('patient_edit_profile', array('id' => $patient->getId()));
+            return $this->redirectToRoute('profile_show', array('id' => $patient->getId()));
         }
 
         return $this->render('admin/edit_patient_profile.html.twig', array(
@@ -48,7 +48,7 @@ class EditPatientController extends Controller
      * @Route("/admin/{id}", name="user_delete_patient")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Patient $user)
+    public function deleteAction(Request $request, UserInfo $user)
     {
         $form = $this->createDeleteForm($user);
         $form->handleRequest($request);
@@ -69,7 +69,7 @@ class EditPatientController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Patient $user)
+    private function createDeleteForm(UserInfo $user)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('user_delete_profile', array('id' => $user->getId())))

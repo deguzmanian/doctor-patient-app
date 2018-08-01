@@ -9,7 +9,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="{{ path('admin') }}">Home</a></li>
-            <li><a href="{{ path('user_info_index') }}">Manage Users</a></li>
+            <li><a href="{{ path('user_info_index') }}">Users</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Clinic <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -53,15 +53,21 @@
         <label>Clinic Email:</label>
       {{ form_widget(form.email) }}
     </div>
-    <div class="form-group col-md-5">
+    <div class="form-group col-md-6">
       <label>Opening Time:</label>
       {{ form_widget(form.schedStart) }}
     </div>
-    <div class="form-group col-md-5">
+    <div class="form-group col-md-6">
       <label>Closing Time:</label>
       {{ form_widget(form.schedEnd) }}
     </div>
-		<div class="form-group col-md-2" style="margin-top:25px;">
+    {# <div class="form-group col-md-5">
+      <label>Add Doctor:</label>
+      <select>
+        <option>{{ user_info.fname }}</option>
+      </select>
+    </div> #}
+		<div class="form-group col-md-5" style="margin-top:25px;">
 			<input type="submit" class="btn btn-success" value="Add Clinic">
 		</div>
 		{{ form_end(form) }}	

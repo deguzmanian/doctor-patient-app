@@ -10,7 +10,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="{{ path('admin') }}">Home</a></li>
-            <li><a href="{{ path('user_info_index') }}">Manage Users</a></li>
+            <li><a href="{{ path('user_info_index') }}">Users</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Clinic <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -50,7 +50,7 @@
           <td>{{ patient.userInfo.lname }}, {{ patient.userInfo.fname }} {{ patient.userInfo.mname }}, {{ patient.userInfo.suffix }}</td>
           <td>
             <a href="{{ path('patient_edit_profile', { 'id': patient.id }) }}" class="btn btn-info btn-xs">EDIT</a>
-            <a href="#" class="btn btn-danger btn-xs">DELETE</a>
+            <a href="{{ path('profile_show', { 'id': patient.id }) }}" class="btn btn-danger btn-xs">SHOW</a>
           </td>
         </tr>
       {% endfor %}

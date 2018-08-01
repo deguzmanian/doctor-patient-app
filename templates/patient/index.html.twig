@@ -27,18 +27,16 @@
       <tr>
       <th>Date of Checkup</th>
       <th>Diagnosis Category</th>
-      <th>Diagnosis</th>
-      <th>Doctor-in-Charge</th>
       <th>Action</th>
       </tr>
     </thead>
       <tbody>
+        {% for i in records %}
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><a href="{{ path('view') }}">View</a></td>
+        <td>{{ i.checkupDate }}</td>
+        <td>{{ i.diagnosiscategory }}</td>
+        <td><a href="{{ path('view', {'id': i.id}) }}">View</a></td>
+        {% endfor %}
       </tr>
       </tbody>
     </table>

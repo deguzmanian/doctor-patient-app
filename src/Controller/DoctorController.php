@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Doctor;
 use App\Entity\Patient;
 use App\Entity\PatientRecord;
 
@@ -32,16 +33,24 @@ class DoctorController extends Controller
      */
     public function add(Request $request)
     {	
-	    $doctor = new PatientRecord();
-        $form = $this->createForm(PatientRecordType::class, $doctor);
-        
+	    $records = new PatientRecord();
+        $form = $this->createForm(PatientRecordType::class, $records);
         $form->handleRequest($request);
+        
+		$doctor = $this->getDoctrine()
+            ->getRepository(Doctor::class)
+            ->find(1);
+        $patient = $this->getDoctrine()
+            ->getRepository(Patient::class)
+            ->findAll();
+        // $patientUserInfo = $patient->getUserInfo();
         if ($form->isSubmitted() && $form->isValid()) {
-            
+            $records = $form->getData();
+            $records->setPatient($patient);
+            $records->setDoctor($doctor);
             $em = $this->getDoctrine()->getManager();
-            $em->persist($doctor);
+            $em->persist($records);
             $em->flush();
-
             return $this->redirectToRoute('doctor-home');
         }
 
@@ -50,7 +59,7 @@ class DoctorController extends Controller
             ->findAll();
 
         return $this->render('doctor/add_diagnosis.html.twig', [
-            'doctor' => $doctor,
+            'records' => $records,
             'form' => $form->createView(),
             'patients' => $patients,
         ]);

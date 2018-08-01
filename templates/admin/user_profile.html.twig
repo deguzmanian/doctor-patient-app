@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User List{% endblock %}
+{% block title %}User Profile{% endblock %}
 
 {% block body %}
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -11,7 +11,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="{{ path('admin') }}">Home</a></li>
-            <li><a href="{{ path('user_info_index') }}">Manage Users</a></li>
+            <li><a href="{{ path('user_info_index') }}">Users</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Clinic <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -35,38 +35,38 @@
     </nav>
 <div class="container">
       <div class="panel panel-default">
-    <div class="panel-heading"><h3>PROFILE</h3></div>
+    <div class="panel-heading"><h3 style="text-align:center;">PROFILE</h3></div>
     <div class="panel-body">
       <div class="table-responsive">
       <table class="table">
       {% for doctor in doctor %}
           
           <tr>
-          <th><h4>USER DETAILS</h4></th>
-          <th><h4>ACCREDITATION DETAILS</h4></th>
+          <th style="text-align:center;"><h4>USER DETAILS</h4></th>
+          <th style="text-align:center;"><h4>ACCREDITATION DETAILS</h4></th>
           </tr>
 
           <tr>
-          <th>Name: {{doctor.userInfo.fname}} {{doctor.userInfo.mname}} {{doctor.userInfo.lname}}, {{doctor.userInfo.Suffix}} </th>
-            <th>Accrediatation Code: {{ doctor.accreditationinfo.accreditationCode }}</th>
+          <td style="text-align:center;">Name: {{doctor.userInfo.fname}} {{doctor.userInfo.mname}} {{doctor.userInfo.lname}}, {{doctor.userInfo.Suffix}} </td>
+            <td style="text-align:center;">Accrediatation Code: {{ doctor.accreditationinfo.accreditationCode }}</td>
           </tr>
 
           <tr>
-          <th>Birtdate: {{doctor.userInfo.birthdate| date('m-d-y') }} </th>
-            <th>Accrediatation Start Date: {{ doctor.accreditationinfo.accreditationDate| date() }}</th> 
+          <td style="text-align:center;">Birtdate: {{doctor.userInfo.birthdate| date('m-d-y') }} </td>
+            <td style="text-align:center;">Accrediatation Start Date: {{ doctor.accreditationinfo.accreditationDate| date() }}</td> 
           </tr>
-          <th>Age: {{ date('now').diff((date(doctor.userInfo.birthdate))).format('%y years old') }} </th>
-            <th>Accrediatation Expiry Date: {{ doctor.accreditationinfo.accreditationExpdate| date() }}</th> 
+          <td style="text-align:center;">Age: {{ date('now').diff((date(doctor.userInfo.birthdate))).format('%y years old') }} </td>
+            <td style="text-align:center;">Accrediatation Expiry Date: {{ doctor.accreditationinfo.accreditationExpdate| date() }}</td> 
           </tr>
           
           <tr>
-            <th>Address: {{ doctor.userInfo.address }}</th>
-            <th></th>
+            <td style="text-align:center;">Address: {{ doctor.userInfo.address }}</td>
+            <td></td>
           </tr>
 
           <tr>
-            <th>Civil Status: {{ doctor.userInfo.civilstatus }}</th>
-            <th></th>
+            <td style="text-align:center;">Civil Status: {{ doctor.userInfo.civilstatus }}</td>
+            <td></td>
           </tr>
 
           {% endfor %}

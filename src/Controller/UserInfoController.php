@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\UserInfo;
+use App\Entity\AccreditationInfo;
 use App\Form\UserInfoType;
 use App\Repository\UserInfoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,7 +28,7 @@ class UserInfoController extends Controller
      * @Route("/add-doctor", name="user_info_new", methods="GET|POST")
      */
     public function new(Request $request): Response
-    {
+    {   
         $userInfo = new UserInfo();
         $form = $this->createForm(UserInfoType::class, $userInfo);
         $form->handleRequest($request);
@@ -47,11 +48,11 @@ class UserInfoController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="user_info_show", methods="GET")
+     * @Route("/admin/user-profile/{id}", name="user_info_show", methods="GET")
      */
     public function show(UserInfo $userInfo): Response
-    {
-        return $this->render('user_info/show.html.twig', ['user_info' => $userInfo]);
+    {   $accreInfo = new AccreditationInfo; 
+        return $this->render('user_info/show.html.twig', ['user_info' => $userInfo, 'accreditationinfo' => $accreInfo]);
     }
 
     /**
